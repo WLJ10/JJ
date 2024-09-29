@@ -12,7 +12,7 @@ body {
 	display: none;
 }
 .peach {
-	background-color: #FFDAB9;
+	background-color: #c17ac7;
 
 }
 .peach-after {
@@ -1080,39 +1080,75 @@ audio {
 	bottom: -200px;
 	opacity: 0.6;
 	z-index: 99;
-	width: 100px;
-	height: 183px;
+	width: 10%; /* 在小型屏幕上占据总宽度的100% */
+	height: auto;
+	background-size: cover;
+	/* background-position: center; */
+	aspect-ratio: 100 / 183; /* 保持宽高比 */
+	/* width: 100px;
+	height: 183px; */
 	background-repeat: no-repeat no-repeat;
-	background-size: 100px 183px;
+	/* background-size: 100px 183px; */
 }
+@media (min-width: 6px) and (max-width: 767px) { /* 小型屏幕 */
+    .balloons {
+        width: 10%; /* 在小型屏幕上占据总宽度的100% */
+		height: auto;
+		background-size: cover;
+		/* background-position: center; */
+		aspect-ratio: 100 / 183; /* 保持宽高比 */
+		
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) { /* 中型屏幕 */
+    .balloons {
+        width: 10%; 
+		height: auto;
+		background-size: cover;
+		/* background-position: center; */
+		aspect-ratio: 100 / 183; /* 保持宽高比 */
+    }
+}
+
+@media (min-width: 992px) { /* 大型屏幕 */
+    .balloons {
+        width: 7%; 
+		height: auto;
+		background-size: cover;
+		/* background-position: center; */
+		aspect-ratio: 100 / 183; /* 保持宽高比 */
+    }
+}
+
 .balloons h2 {
 	text-transform: uppercase;
 	font-family: 'Signika', sans-serif;
-	font-size: 50px;
+	font-size: 5vw;
 	color: #BF4136;
 	text-shadow: 5px 5px 5px #FFF;
 	display: none;
 }
 #b1,#b11 {
-	background-image: url('b1.png');
+	background-image: url('b5.png');
 }
 #b2,#b22 {
-	background-image: url('b2.png');
+	background-image: url('b5.png');
 }
 #b3,#b33 {
-	background-image: url('b3.png');
+	background-image: url('b5.png');
 }
 #b4,#b44{
-	background-image: url('b4.png');
+	background-image: url('b5.png');
 }
 #b5,#b55{
 	background-image: url('b5.png');
 }
 #b6,#b66{
-	background-image: url('b6.png');
+	background-image: url('b5.png');
 }
 #b7,#b77{
-	background-image: url('b7.png');
+	background-image: url('b5.png');
 }
 .balloons-rotate-behaviour-one {
 	-webkit-animation: balloons_rotate_one linear 10s infinite;
@@ -1260,13 +1296,15 @@ audio {
 	bottom: 0;
 	padding:10px 0px 10px 0px;
 }
-#play, #bannar_coming, #balloons_flying,#cake_fadein,#light_candle,#wish_message,#story {
+#play, #bannar_coming, #balloons_flying,#cake_fadein,#light_candle,#wish_message,#story,#ToJJ {
 	display: none;
 }
 
 .cake-cover {
 	margin-top: 50px;
 }
+
+/* message */
 .message {
 	margin-top: 200px;
 	display: none;
@@ -1290,19 +1328,26 @@ audio {
 	box-shadow: #aaa 0 0 4px;
 }
 
+/* ToJJ */
 .article {
-	margin-top: 200px;
+	position: fixed;
+	margin-top: 250px;
 	display: none;
 }
 .article p {
-	font-family: 'Signika', sans-serif;
-	font-size: 30px;
+	font-family: '楷体', 'KaiTi', 'Signika', sans-serif;
+	font-size: 4vw;
 	text-transform: uppercase;
-	color: #C4515C;
+	color: #131111;
 	text-shadow: 2px 2px 2px #FFF;
 	display: none;
 	font-weight: bold;
 	text-align: left;
+	position: fixed;
+	width: 100%;
+	word-wrap: break-word; /* 自动换行 */
+	overflow-wrap: break-word; /* 自动换行 */	
+	z-index: 1000;
 }
 
 .btn-primary {

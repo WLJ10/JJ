@@ -7,13 +7,13 @@ $('document').ready(function(){
 		$(window).resize(function(){
 			 vw = $(window).width()/2;
 			$('#b1,#b2,#b3,#b4,#b5,#b6,#b7').stop();
-			$('#b11').animate({top:240, left: vw-350},500);
-			$('#b22').animate({top:240, left: vw-250},500);
-			$('#b33').animate({top:240, left: vw-150},500);
-			$('#b44').animate({top:240, left: vw-50},500);
-			$('#b55').animate({top:240, left: vw+50},500);
-			$('#b66').animate({top:240, left: vw+150},500);
-			$('#b77').animate({top:240, left: vw+250},500);
+			$('#b11').animate({top:240, left: vw-7*w},500);
+			$('#b22').animate({top:240, left: vw-5*w},500);
+			$('#b33').animate({top:240, left: vw-3*w},500);
+			$('#b44').animate({top:240, left: vw-w},500);
+			$('#b55').animate({top:240, left: vw+w},500);
+			$('#b66').animate({top:240, left: vw+3*w},500);
+			$('#b77').animate({top:240, left: vw+5*w},500);
 		});
 
 	$('#turn_on').click(function(){
@@ -124,14 +124,16 @@ $('document').ready(function(){
 			$('#cake_fadein').fadeIn('slow');
 		});
 	});	
-
+	
+	//蛋糕出现
 	$('#cake_fadein').click(function(){
 		$('.cake').fadeIn('slow');
 		$(this).fadeOut('slow').delay(300).promise().done(function(){
 			$('#light_candle').fadeIn('slow');
 		});
 	});
-
+	
+	//点燃蜡烛
 	$('#light_candle').click(function(){
 		$('.fuego').fadeIn('slow');
 		$(this).fadeOut('slow').promise().done(function(){
@@ -139,10 +141,10 @@ $('document').ready(function(){
 		});
 	});
 
-		
+	//气球移动,显字
 	$('#wish_message').click(function(){
 		 vw = $(window).width()/2;
-
+		var w = $('.balloons').width()/2;
 		$('#b1,#b2,#b3,#b4,#b5,#b6,#b7').stop();
 		$('#b1').attr('id','b11');
 		$('#b2').attr('id','b22')
@@ -151,13 +153,14 @@ $('document').ready(function(){
 		$('#b5').attr('id','b55')
 		$('#b6').attr('id','b66')
 		$('#b7').attr('id','b77')
-		$('#b11').animate({top:240, left: vw-350},500);
-		$('#b22').animate({top:240, left: vw-250},500);
-		$('#b33').animate({top:240, left: vw-150},500);
-		$('#b44').animate({top:240, left: vw-50},500);
-		$('#b55').animate({top:240, left: vw+50},500);
-		$('#b66').animate({top:240, left: vw+150},500);
-		$('#b77').animate({top:240, left: vw+250},500);
+		$('#b11').animate({top:240, left: vw-7*w},500);
+		$('#b22').animate({top:240, left: vw-5*w},500);
+		$('#b33').animate({top:240, left: vw-3*w},500);
+		$('#b44').animate({top:240, left: vw-w},500);
+		$('#b55').animate({top:240, left: vw+w},500);
+		$('#b66').animate({top:240, left: vw+3*w},500);
+		$('#b77').animate({top:240, left: vw+5*w},500);
+		$('.balloons').css('height', w*3.66+'px');//为什么这里要再次确定height
 		$('.balloons').css('opacity','0.9');
 		$('.balloons').css('position','absolute');
 		$('.balloons h2').fadeIn(300);
@@ -166,6 +169,7 @@ $('document').ready(function(){
 		});
 	});
 	
+	//显示message, 并淡出蛋糕
 	$('#story').click(function(){
 		$(this).fadeOut('slow');
 		$('.cake').fadeOut('fast').promise().done(function(){
@@ -177,13 +181,14 @@ $('document').ready(function(){
 		var i;
 
 		function msgLoop (parentSelector, i, callback) {
-			$(`${parentSelector} p:nth-of-type(${i})`).fadeOut('slow').delay(80).promise().done(function() {
+			$(`${parentSelector} p:nth-of-type(${i})`).fadeOut('slow').delay(300).promise().done(function() {
 			i = i + 1;
 			// 再次使用反引号插入新的 i
-			$(`${parentSelector} p:nth-of-type(${i})`).fadeIn('slow').delay(100);
+			$(`${parentSelector} p:nth-of-type(${i})`).fadeIn('slow').delay(800);
 			if(i==50){
 				$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
-					$('.cake').fadeIn('fast');
+					// $('.cake').fadeIn('fast');
+					$('#ToJJ').fadeIn('slow');
 					// 当整个 msgLoop 执行完时调用回调
 					if (typeof callback === 'function') {
 						callback(); // 调用回调函数
@@ -197,9 +202,15 @@ $('document').ready(function(){
 
 		});
 	}
+		msgLoop("#texts-container",0, function(){
+		});
+	});
+	$('#ToJJ').click(function(){//需要实现气球上移到顶部,其他元素全部淡出
+		$('#ToJJ').fadeOut('slow');
+		var w = $('.balloons').height();
 		function articleShow (parentSelector, i) {
 			// 再次使用反引号插入新的 i
-			$(`${parentSelector} p:nth-of-type(${i})`).fadeIn('slow').delay(100).promise().done(function(){
+			$(`${parentSelector} p:nth-of-type(${i})`).fadeIn('slow').delay(800).promise().done(function(){
 			i = i + 1;
 			if(i==50){
 				$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
@@ -211,15 +222,29 @@ $('document').ready(function(){
 				articleShow(parentSelector, i);
 			}		
 		});	
-
-			// body...
 		};
-		msgLoop("#texts-container",0, function(){
-		articleShow('#article-container',0);
+		var w = $('.balloons').width() / 2;
+		// 使用 $.when 来管理多个动画的完成
+		$.when(
+			// 隐藏 `.bulb`
+			$('.bulb').fadeOut(200).delay(10).promise(),		
+			// 隐藏 `.bannar`
+			$('.bannar').fadeOut(200).delay(10).promise(),	
+			// 隐藏 `.cake`
+			$('.cake').fadeOut(200).delay(10).promise(),	
+			// 动画 `#b11` 到 `#b77`
+			$('#b11').animate({top: 10, left: vw - 7 * w}, 400),
+			$('#b22').animate({top: 10, left: vw - 5 * w}, 500),
+			$('#b33').animate({top: 10, left: vw - 3 * w}, 600),
+			$('#b44').animate({top: 10, left: vw - w}, 700),
+			$('#b55').animate({top: 10, left: vw + w}, 800),
+			$('#b66').animate({top: 10, left: vw + 3 * w}, 900),
+			$('#b77').animate({top: 10, left: vw + 5 * w}, 1000)
+		).then(function () {
+			setTimeout(function () {
+				articleShow("#article-container", 0); // 调用 articleShow 并传入参数
+			}, 500); // 等待200毫秒后调用 articleShow
 		});
-		// $('.message').fadeIn('slow')
-
-		// $('.article').fadeIn('slow');
 		
 	});
 });

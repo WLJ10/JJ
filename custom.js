@@ -14,8 +14,11 @@ $(function () {
     });
     $("#texts-container").append(dom.innerHTML);
     let dom1 = document.createElement("span");
-    config.article.forEach(function (item) {
+    config.article.forEach(function (item, index) {
         let p = document.createElement("p");
+        // p.classList.add("custom-position"); // 添加样式类
+        p.style.top = `${100 + index * 40}px`; // 动态调整top值
+        p.style.left = "10px"; // 固定left值
         p.innerHTML = item;
         dom1.appendChild(p);
     });
