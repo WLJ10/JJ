@@ -1306,8 +1306,10 @@ audio {
 
 /* message */
 .message {
-	margin-top: 200px;
+	margin-top: 400px;
 	display: none;
+	height: 400px;
+	position: relative;
 }
 .message p {
 	font-family: 'Signika', sans-serif;

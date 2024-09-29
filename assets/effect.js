@@ -172,11 +172,8 @@ $('document').ready(function(){
 	//显示message, 并淡出蛋糕
 	$('#story').click(function(){
 		$(this).fadeOut('slow');
-		$('.cake').fadeOut('fast').promise().done(function(){
-			$('.message').fadeIn('slow');
-			$('.article').fadeIn('slow');
-
-		});
+		$('.message').fadeIn('slow');
+		$('.article').fadeIn('slow');
 		
 		var i;
 
